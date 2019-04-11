@@ -33,30 +33,30 @@ app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({ extended: true }))
 
 app.use(morgan('dev'))
-app.use(function (request, response, next) {
-  response.header('Access-Control-Allow-Origin', '*')
-  response.header('Access-Control-Allow-Origin', 'Origin, X-Requested-With, Content-Type, Accept')
+app.use(function (req, res, next) {
+  res.header('Access-Control-Allow-Origin', '*')
+  res.header('Access-Control-Allow-Origin', 'Origin, X-reqed-With, Content-Type, Accept')
   next()
 })
 
-app.get('/lists', function (request, response) {
+app.get('/lists', function (req, res) {
   pool.connect((error, db, done) => {
     if (error) {
-      return response.status(400).send(error)
+      return res.status(400).send(error)
     } else {
       db.query('SELECT * FROM todo', (error, table) => {
         if (error) {
-          return response.status(400).send(error)
+          return res.status(400).send(error)
         } else {
-          response.status(200).send(table.rows)
+          res.status(200).send(table.rows)
         }
       })
     }
   })
 })
 
-app.post('/lists', function (request, response) {
-  let body = request.body
+app.post('/lists', function (req, res) {
+  let body = req.body
   let type = body.type
   let task = body.task
   let completed = body.completed
@@ -64,15 +64,40 @@ app.post('/lists', function (request, response) {
 
   pool.connect((error, db, done) => {
     if (error) {
-      return response.status(400).send(error)
+      return res.status(400).send(error)
     } else {
       db.query('INSERT INTO todo (type, task, completed) values($1::varchar, $2::text, $3::boolean)', [...values], (error, table) => {
         if (error) {
-          return response.status(400).send(error)
+          return res.status(400).send(error)
         } else {
           console.log('Data posted.')
           db.end()
-          response.status(201).send({ message: 'Data insterted!' })
+          res.status(201).send({ message: 'Data insterted!' })
+        }
+      })
+    }
+  })
+})
+
+app.put('/lists/:id', function (req, res) {
+  let id = 3
+  let body = req.body
+  let type = body.type
+  let task = body.task
+  let completed = body.completed
+  let values = [type, task, completed, id]
+
+  pool.connect((error, db, done) => {
+    if (error) {
+      return res.status(400).send(error)
+    } else {
+      db.query('UPDATE todo set type=$1::varchar, task=$2::text, completed=$3::boolean WHERE id=$4::int', [...values], (error, table) => {
+        if (error) {
+          return res.status(400).send(error)
+        } else {
+          console.log('Data updated.')
+          db.end()
+          res.status(201).send({ message: 'Data updated!' })
         }
       })
     }

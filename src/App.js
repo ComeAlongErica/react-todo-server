@@ -28,9 +28,29 @@ const App = () => {
       .catch(error => console.log('error: ', error))
   }
 
+  const putTask = (task) => {
+    let data = {
+      type: 'NONONONON',
+      task: 'DO NOTHING',
+      completed: 'true'
+    }
+
+    let request = new Request('http://localhost:3000/lists/3', {
+      method: 'PUT',
+      headers: new Headers({ 'Content-Type': 'application/json' }),
+      body: JSON.stringify(data)
+    })
+
+    fetch(request)
+      .then(res => res.json())
+      .then(response => console.log('fetch response', response))
+      .catch(error => console.log('error: ', error))
+  }
+
   return (
     <div className={'App'}>
       <button onClick={addTask}>AddTask</button>
+      <button onClick={putTask}>Put</button>
       {todo && todo.map((task, idx) => {
         return <p key={idx}>{task.task}</p>
       })}
