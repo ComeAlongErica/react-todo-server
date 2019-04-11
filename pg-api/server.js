@@ -39,7 +39,23 @@ app.use(function (request, response, next) {
   next()
 })
 
-app.post('/lists/todo', function (request, response) {
+app.get('/lists', function (request, response) {
+  pool.connect((error, db, done) => {
+    if (error) {
+      return response.status(400).send(error)
+    } else {
+      db.query('SELECT * FROM todo', (error, table) => {
+        if (error) {
+          return response.status(400).send(error)
+        } else {
+          response.status(200).send(table.rows)
+        }
+      })
+    }
+  })
+})
+
+app.post('/lists', function (request, response) {
   let body = request.body
   let type = body.type
   let task = body.task

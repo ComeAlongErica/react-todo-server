@@ -5,7 +5,9 @@ const App = () => {
   const [todo, setTodo] = useState()
 
   useEffect(() => {
-    console.log('useEffect')
+    fetch('http://localhost:3000/lists/')
+    .then(res => res.json())
+    .then(response => console.log('responseGET: ', response))
   }, [])
 
   const addTask = (task) => {
@@ -14,7 +16,7 @@ const App = () => {
       task: 'drink water',
       completed: 'false'
     }
-    let request = new Request('http://localhost:3000/lists/todo', {
+    let request = new Request('http://localhost:3000/lists/', {
       method: 'POST',
       headers: new Headers({ 'Content-Type': 'application/json' }),
       body: JSON.stringify(data)
