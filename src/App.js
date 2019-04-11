@@ -21,16 +21,16 @@ const App = () => {
     })
 
     fetch(request)
-    .then(res => res.json())
-    .then(response => console.log('fetch response' + response))
-    .catch(error => console.log('error:' + error))
+      .then(res => res.json())
+      .then(response => console.log('fetch response', response))
+      .catch(error => console.log('error: ', error))
   }
-  
-    return (
-      <div className={'App'}>
-        <button onClick={addTask}>AddTask</button>
-      </div>
-    )
+
+  return (
+    <div className={'App'}>
+      <button onClick={addTask}>AddTask</button>
+    </div>
+  )
 }
 
 export default App;

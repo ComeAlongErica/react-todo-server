@@ -48,14 +48,15 @@ app.post('/lists/todo', function (request, response) {
 
   pool.connect((error, db, done) => {
     if (error) {
-      return console.log(error)
+      return response.status(400).send(error)
     } else {
       db.query('INSERT INTO todo (type, task, completed) values($1::varchar, $2::text, $3::boolean)', [...values], (error, table) => {
         if (error) {
-          return console.log(error)
+          return response.status(400).send(error)
         } else {
           console.log('Data posted.')
           db.end()
+          response.status(201).send({ message: 'Data insterted!' })
         }
       })
     }
