@@ -1,28 +1,36 @@
-import React, { Component } from 'react';
-import logo from './logo.svg';
+import React, { useState, useEffect } from 'react';
 import './App.css';
 
-class App extends Component {
-  render() {
-    return (
-      <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <p>
-            Edit <code>src/App.js</code> and save to reload.
-          </p>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-          </a>
-        </header>
-      </div>
-    );
+const App = () => {
+  const [todo, setTodo] = useState()
+
+  useEffect(() => {
+    console.log('useEffect')
+  }, [])
+
+  const addTask = (task) => {
+    let data = {
+      type: 'health',
+      task: 'drink water',
+      completed: 'false'
+    }
+    let request = new Request('http://localhost:3000/lists/todo', {
+      method: 'POST',
+      headers: new Headers({ 'Content-Type': 'application/json' }),
+      body: JSON.stringify(data)
+    })
+
+    fetch(request)
+    .then(res => res.json())
+    .then(response => console.log('fetch response' + response))
+    .catch(error => console.log('error:' + error))
   }
+  
+    return (
+      <div className={'App'}>
+        <button onClick={addTask}>AddTask</button>
+      </div>
+    )
 }
 
 export default App;

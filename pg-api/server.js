@@ -39,4 +39,27 @@ app.use(function (request, response, next) {
   next()
 })
 
+app.post('/lists/todo', function (request, response) {
+  let body = request.body
+  let type = body.type
+  let task = body.task
+  let completed = body.completed
+  let values = [type, task, completed]
+
+  pool.connect((error, db, done) => {
+    if (error) {
+      return console.log(error)
+    } else {
+      db.query('INSERT INTO todo (type, task, completed) values($1::varchar, $2::text, $3::boolean)', [...values], (error, table) => {
+        if (error) {
+          return console.log(error)
+        } else {
+          console.log('Data posted.')
+          db.end()
+        }
+      })
+    }
+  })
+})
+
 app.listen(PORT, () => console.log('Listening on port: ' + PORT))
