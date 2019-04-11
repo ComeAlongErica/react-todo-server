@@ -7,7 +7,7 @@ const App = () => {
   useEffect(() => {
     fetch('http://localhost:3000/lists/')
     .then(res => res.json())
-    .then(response => console.log('responseGET: ', response))
+    .then(response => setTodo(response))
   }, [])
 
   const addTask = (task) => {
@@ -31,6 +31,9 @@ const App = () => {
   return (
     <div className={'App'}>
       <button onClick={addTask}>AddTask</button>
+      {todo && todo.map((task, idx) => {
+        return <p key={idx}>{task.task}</p>
+      })}
     </div>
   )
 }
