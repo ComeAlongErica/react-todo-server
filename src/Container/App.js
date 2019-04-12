@@ -1,14 +1,15 @@
-import React, { useState, useEffect } from 'react';
-import './App.css';
+import React, { useState, useEffect, Fragment } from 'react';
+
+import Header from '../Components/Header'
 
 const App = () => {
   const [todo, setTodo] = useState()
 
-  useEffect(() => {
-    fetch('http://localhost:3000/lists/')
-    .then(res => res.json())
-    .then(response => setTodo(response))
-  }, [])
+  // useEffect(() => {
+  //   fetch('http://localhost:3000/lists/')
+  //   .then(res => res.json())
+  //   .then(response => setTodo(response))
+  // }, [])
 
   const addTask = (task) => {
     let data = {
@@ -48,13 +49,9 @@ const App = () => {
   }
 
   return (
-    <div className={'App'}>
-      <button onClick={addTask}>AddTask</button>
-      <button onClick={putTask}>Put</button>
-      {todo && todo.map((task, idx) => {
-        return <p key={idx}>{task.task}</p>
-      })}
-    </div>
+    <Fragment>
+      <Header />
+    </Fragment>
   )
 }
 
