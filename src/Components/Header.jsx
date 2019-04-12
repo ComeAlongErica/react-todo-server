@@ -1,5 +1,5 @@
-import React from "react";
-import styled from "styled-components";
+import React from 'react'
+import styled from 'styled-components'
 
 const HeaderContainer = styled.div`
 width: 100vw;
@@ -9,6 +9,6 @@ height: 120px;
 
 const Header = props => {
   return <HeaderContainer>Hello</HeaderContainer>
-};
+}
 
-export default Header;
+export default Header
