@@ -42,7 +42,7 @@ const App = () => {
     })
 
     fetch(request)
-      .then(res => res.json())
+       .then(res => res.json())
       .then(response => console.log('fetch response', response))
       .catch(error => console.log('error: ', error))
   }
