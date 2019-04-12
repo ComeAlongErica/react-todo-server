@@ -16,6 +16,9 @@ display: flex;
 const ListsHeader = styled.div`
 display: flex;
 justify-content: space-between;
+width: 70%;
+max-width: 700px;
+margin: 0 auto;
 p {
   margin: 10px;
 }
