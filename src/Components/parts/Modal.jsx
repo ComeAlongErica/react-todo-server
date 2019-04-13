@@ -14,11 +14,10 @@ background-color: #34353571;
 const DisplayModal = styled.div`
 z-index: 15;
 position: fixed;
-top: 50%; left: 50%;
-transform: translate(-50%, -50%);
+top: 60px; left: 50%;
+transform: translateX(-50%);
 background-color: white;
 border-radius: 5px;
-min-height: 50vh;
 min-width: 50vw;
 display: flex;
 justify-content: center;

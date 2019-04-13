@@ -12,9 +12,10 @@ top: 0;
 `
 
 const Header = props => {
-  const { openModal, addTask, deleteAll } = props
+  const { openModal, addTask, deleteAll, closeModal } = props
   return <HeaderContainer>
     <HeaderNav
+      closeModal={closeModal}
       openModal={openModal}
       addTask={addTask}
       deleteAll={deleteAll} />

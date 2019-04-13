@@ -34,7 +34,7 @@ letter-spacing: 1px;
 font-size: 20px;
 font-weight: bold;
 padding: 10px 20px;
-margin: 10px 0 25px 0;
+margin: 10px 0 40px 0;
 transition: .3s ease;
 border-radius: 10px;
 border: solid 2px transparent;
@@ -54,7 +54,12 @@ const NewTaskModal = props => {
   const { addTask } = props
   const [newTask, setNewTask] = useState()
   const handleChange = e => {
+    e.preventDefault()
     setNewTask(e.target.value)
+  }
+  const handleClick = (e) => {
+    e.preventDefault()
+    addTask(newTask)
   }
   return (
     <FormContainer>
@@ -62,7 +67,7 @@ const NewTaskModal = props => {
       <TaskInput
         placeholder={'level up'}
         onChange={handleChange} />
-      <AddButton onClick={() => addTask(newTask)}>Add</AddButton>
+      <AddButton onClick={e => handleClick(e)} >Add</AddButton>
     </FormContainer>)
 }
 

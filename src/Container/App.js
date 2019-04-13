@@ -11,7 +11,6 @@ const App = () => {
 
   useEffect(() => {
     getTasks()
-    console.log('isthishappen')
   }, [])
 
   const addTask = task => {
@@ -112,7 +111,7 @@ const App = () => {
   console.log(todo)
   return (
     <Fragment>
-      <Header openModal={openModal} addTask={addTask} deleteAll={deleteAll} />
+      <Header openModal={openModal} addTask={addTask} deleteAll={deleteAll} closeModal={closeModal} />
       <List data={todo} deleteTask={deleteTask} putTask={putTask} />
       {displayModal && <Modal modalContent={modalContent} closeModal={closeModal} />}
     </Fragment>
