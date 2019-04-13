@@ -13,7 +13,7 @@ const pool = pg.Pool({
   port: 5432,
   database: 'postgres',
   ssl: false,
-  max: 10
+  max: 100
 })
 
 app.use(cors())
