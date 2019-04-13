@@ -14,7 +14,7 @@ const HeaderNav = props => {
   const renderNav = [add, trash]
   return (
     <NavContainer>
-      {renderNav.map(icon => <ActionButton icon={icon} />)}
+      {renderNav.map((icon, idx) => <ActionButton key={idx} icon={icon} />)}
     </NavContainer>
   )
 }

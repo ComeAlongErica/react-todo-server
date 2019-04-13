@@ -1,7 +1,8 @@
-import React, { Fragment } from 'react'
+import React from 'react'
 import styled from 'styled-components'
 
 const ActionContainer = styled.div`
+z-index: 5;
 height: 50px;
 width: 50px;
 background-color: white;
@@ -14,7 +15,6 @@ justify-content: center;
 align-items: center;
 &&:hover {
   cursor: pointer;
-  opacity: .9;
   transition: .5s ease;
   box-shadow: rgba(9, 30, 66, 0.25) 0px 8px 16px -4px, rgba(9, 30, 66, 0.31) 0px 0px 1px;
 }
@@ -22,11 +22,10 @@ align-items: center;
 
 const ActionButton = props => {
   const { icon } = props
-  return (<Fragment>
+  return (
     <ActionContainer>
       {icon}
-    </ActionContainer>
-  </Fragment>)
+    </ActionContainer>)
 }
 
 export default ActionButton
