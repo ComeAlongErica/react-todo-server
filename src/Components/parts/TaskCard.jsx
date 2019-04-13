@@ -92,7 +92,7 @@ const TaskCard = props => {
       id={task.id}
       onClick={e => putTask(e, task)}
       defaultChecked={task.completed} />
-    <TaskLabel htmlFor={task.id}>{task.task}{task.id}</TaskLabel>
+    <TaskLabel htmlFor={task.id}>{task.task}</TaskLabel>
     <DeleteButton onClick={() => deleteTask(task.id)}>remove</DeleteButton>
   </CardContainer>
 }
