@@ -4,7 +4,7 @@ const morgan = require('morgan')
 const pg = require('pg')
 const app = express()
 const cors = require('cors')
-const PORT = 3000
+const PORT = 5000
 
 const pool = pg.Pool({
   user: 'postgres',

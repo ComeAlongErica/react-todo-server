@@ -19,7 +19,7 @@ const App = () => {
       task: task,
       completed: 'false'
     }
-    let request = new Request('http://localhost:3000/lists/', {
+    let request = new Request('http://localhost:5000/lists/', {
       method: 'POST',
       headers: new Headers({ 'Content-Type': 'application/json' }),
       body: JSON.stringify(data)
@@ -35,7 +35,7 @@ const App = () => {
   }
 
   const getTasks = () => {
-    window.fetch('http://localhost:3000/lists/')
+    window.fetch('http://localhost:5000/lists/')
       .then(res => res.json())
       .then(result => {
         console.log('get response', result)
@@ -56,7 +56,7 @@ const App = () => {
       taskClone.completed = false
     }
 
-    let request = new Request(`http://localhost:3000/lists/${id}`, {
+    let request = new Request(`http://localhost:5000/lists/${id}`, {
       method: 'PUT',
       headers: new Headers({ 'Content-Type': 'application/json' }),
       body: JSON.stringify(taskClone)
@@ -72,7 +72,7 @@ const App = () => {
   }
 
   const deleteTask = id => {
-    let request = new Request(`http://localhost:3000/lists/${id}`, {
+    let request = new Request(`http://localhost:5000/lists/${id}`, {
       method: 'DELETE'
     })
 
@@ -86,7 +86,7 @@ const App = () => {
   }
 
   const deleteAll = () => {
-    let request = new Request('http://localhost:3000/lists', {
+    let request = new Request('http://localhost:5000/lists', {
       method: 'DELETE'
     })
 
