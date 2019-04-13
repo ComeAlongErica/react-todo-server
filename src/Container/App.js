@@ -17,8 +17,7 @@ const App = () => {
 
   const addTask = task => {
     let data = {
-      type: 'health',
-      task: 'drink water',
+      task: task,
       completed: 'false'
     }
     let request = new Request('http://localhost:3000/lists/', {

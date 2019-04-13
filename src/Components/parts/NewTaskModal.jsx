@@ -1,13 +1,23 @@
-import React from 'react'
+import React, { useState } from 'react'
 import styled from 'styled-components'
 
+const FormContainer = styled.form`
+`
+
 const NewTaskModal = props => {
-  const { handleClick } = props
+  const { addTask } = props
+  const [newTask, setNewTask] = useState()
+  const handleChange = e => {
+    setNewTask(e.target.value)
+  }
   return (
-    <form>
-      <input></input>
-      <button onClick={handleClick} >add</button>
-    </form>)
+    <FormContainer>
+      <h2>Add New Task</h2>
+      <input
+        placeholder={'level up'}
+        onChange={handleChange} />
+      <button onClick={() => addTask(newTask)} >add</button>
+    </FormContainer>)
 }
 
 export default NewTaskModal
