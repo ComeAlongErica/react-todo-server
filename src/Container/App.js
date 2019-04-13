@@ -114,9 +114,9 @@ const App = () => {
   console.log(todo)
   return (
     <Fragment>
-      <Header openModal={openModal} />
+      <Header openModal={openModal} addTask={addTask} deleteAll={deleteAll} />
       <List data={todo} deleteTask={deleteTask} putTask={putTask} />
-      {displayModal && <Modal modalContent={modalContent} closeModal={closeModal}/>}
+      {displayModal && <Modal modalContent={modalContent} closeModal={closeModal} />}
     </Fragment>
   )
 }

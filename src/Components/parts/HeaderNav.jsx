@@ -3,22 +3,31 @@ import styled from 'styled-components'
 import { Trash2, Plus } from 'react-feather'
 
 import ActionButton from './ActionButton'
+import NewTaskModal from './NewTaskModal'
+import DeleteAllModal from './DeleteAllModal'
 
 const NavContainer = styled.div`
 }
 `
 
 const HeaderNav = props => {
-  const { openModal } = props
-  const add = <Plus size={30} stroke={'#ffae0d'} strokeWidth={3} />
-  const trash = <Trash2 size={30} stroke={'#ffae0d'} strokeWidth={3} />
+  const { openModal, addTask, deleteAll } = props
   const renderNav = [
-    { icon: add, handleClick: 'add' },
-    { icon: trash, handleClick: 'delete' }
+    {
+      icon: <Plus size={30} stroke={'#ffae0d'} strokeWidth={3} />,
+      component: <NewTaskModal addTask={addTask} />
+    },
+    {
+      icon: <Trash2 size={30} stroke={'#ffae0d'} strokeWidth={3} />,
+      component: <DeleteAllModal deleteAll={deleteAll} />
+    }
   ]
   return (
     <NavContainer>
-      {renderNav.map((item, idx) => <ActionButton key={idx} icon={item.icon} handleClick={() => openModal(item.handleClick)} />)}
+      {renderNav.map((item, idx) => <ActionButton
+        key={idx}
+        icon={item.icon}
+        handleClick={() => openModal(item.component)} />)}
     </NavContainer>
   )
 }
