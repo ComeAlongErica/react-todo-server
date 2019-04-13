@@ -102,8 +102,25 @@ app.delete('/lists/:id', function (req, res) {
         if (error) {
           return res.status(400).send(error)
         } else {
-          console.log('Data updated.')
+          console.log('Data deleted.')
           res.status(200).send({ message: 'Data deleted!' })
+        }
+      })
+    }
+  })
+})
+
+app.delete('/lists', function (req, res) {
+  pool.connect((error, db, done) => {
+    if (error) {
+      return res.status(400).send(error)
+    } else {
+      db.query('DELETE FROM todo', (error, table) => {
+        if (error) {
+          return res.status(400).send(error)
+        } else {
+          console.log('All data deleted.')
+          res.status(200).send({ message: 'All data deleted!' })
         }
       })
     }

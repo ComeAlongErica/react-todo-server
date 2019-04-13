@@ -9,12 +9,12 @@ const NavContainer = styled.div`
 `
 
 const HeaderNav = props => {
-  const { addTask } = props
+  const { addTask, deleteAll } = props
   const add = <Plus size={30} stroke={'#ffae0d'} strokeWidth={3} />
   const trash = <Trash2 size={30} stroke={'#ffae0d'} strokeWidth={3} />
   const renderNav = [
     { icon: add, handleClick: addTask },
-    { icon: trash, handleClick: '' }
+    { icon: trash, handleClick: deleteAll }
   ]
   return (
     <NavContainer>

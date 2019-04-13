@@ -25,6 +25,7 @@ const List = props => {
   return <ListContainer>
     <ProgressBar uncompleted={uncompleted} totalTasks={totalTasks} />
     <TodoContainer>
+      {!data && <p>There is nothing to show.</p>}
       {data && data.map(task => <TaskCard key={task.id} task={task} deleteTask={deleteTask} putTask={putTask} />)}
     </TodoContainer>
   </ListContainer>

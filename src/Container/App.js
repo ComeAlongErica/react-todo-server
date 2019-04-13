@@ -84,10 +84,24 @@ const App = () => {
       .catch(error => console.log('error: ', error))
   }
 
+  const deleteAll = () => {
+    let request = new Request('http://localhost:3000/lists', {
+      method: 'DELETE'
+    })
+
+    window.fetch(request)
+      .then(res => res.json())
+      .then((response) => {
+        console.log('all data delete response', response)
+        getTasks()
+      })
+      .catch(error => console.log('error: ', error))
+  }
+
   console.log(todo)
   return (
     <Fragment>
-      <Header addTask={addTask} />
+      <Header addTask={addTask} deleteAll={deleteAll} />
       <List data={todo} deleteTask={deleteTask} putTask={putTask} />
     </Fragment>
   )
