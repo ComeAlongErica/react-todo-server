@@ -1,7 +1,7 @@
 import React from 'react'
 import styled from 'styled-components'
 
-import AddTask from './parts/AddTask'
+import HeaderNav from './parts/HeaderNav'
 
 const HeaderContainer = styled.div`
 width: 100%;
@@ -13,7 +13,7 @@ top: 0;
 
 const Header = props => {
   return <HeaderContainer>
-    <AddTask />
+    <HeaderNav />
   </HeaderContainer>
 }
 
