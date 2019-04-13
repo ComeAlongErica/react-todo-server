@@ -8,28 +8,38 @@ const App = () => {
   const [todo, setTodo] = useState()
 
   useEffect(() => {
-    window.fetch('http://localhost:3000/lists/')
-      .then(res => res.json())
-      .then(result => setTodo(result))
+    getTasks()
+    // window.fetch('http://localhost:3000/lists/')
+    //   .then(res => res.json())
+    //   .then(result => setTodo(result))
   }, [])
 
-  // const addTask = task => {
-  //   let data = {
-  //     type: 'health',
-  //     task: 'drink water',
-  //     completed: 'false'
-  //   }
-  //   let request = new Request('http://localhost:3000/lists/', {
-  //     method: 'POST',
-  //     headers: new Headers({ 'Content-Type': 'application/json' }),
-  //     body: JSON.stringify(data)
-  //   })
+  const addTask = task => {
+    let data = {
+      type: 'health',
+      task: 'drink water',
+      completed: 'false'
+    }
+    let request = new Request('http://localhost:3000/lists/', {
+      method: 'POST',
+      headers: new Headers({ 'Content-Type': 'application/json' }),
+      body: JSON.stringify(data)
+    })
 
-  //   fetch(request)
-  //     .then(res => res.json())
-  //     .then(response => console.log('fetch response', response))
-  //     .catch(error => console.log('error: ', error));
-  // }
+    fetch(request)
+      .then(res => res.json())
+      .then(response => console.log('fetch response', response))
+      .catch(error => console.log('error: ', error));
+  }
+
+  const getTasks = () => {
+    window.fetch('http://localhost:3000/lists/')
+      .then(res => res.json())
+      .then(result => {
+        console.log('get response', result)
+        setTodo(result)
+      })
+  }
 
   const putTask = (e, task) => {
     console.log(e.currentTarget.checked)
@@ -52,7 +62,10 @@ const App = () => {
 
     window.fetch(request)
       .then(res => res.json())
-      .then(response => console.log('fetch response', response))
+      .then((response) => {
+        console.log('edit response', response)
+        getTasks()
+      })
       .catch(error => console.log('error: ', error))
   }
 
@@ -63,7 +76,10 @@ const App = () => {
 
     window.fetch(request)
       .then(res => res.json())
-      .then(response => console.log('fetch response', response))
+      .then((response) => {
+        console.log('delete response', response)
+        getTasks()
+      })
       .catch(error => console.log('error: ', error))
   }
 

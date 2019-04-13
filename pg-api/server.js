@@ -30,7 +30,7 @@ app.get('/lists', function (req, res) {
     if (error) {
       return res.status(400).send(error)
     } else {
-      db.query('SELECT * FROM todo', (error, table) => {
+      db.query('SELECT * FROM todo ORDER BY ID', (error, table) => {
         if (error) {
           return res.status(400).send(error)
         } else {
@@ -92,7 +92,6 @@ app.put('/lists/:id', function (req, res) {
 
 app.delete('/lists/:id', function (req, res) {
   let id = req.params.id
-  console.log('id', id)
   pool.connect((error, db, done) => {
     if (error) {
       return res.status(400).send(error)
@@ -102,8 +101,7 @@ app.delete('/lists/:id', function (req, res) {
           return res.status(400).send(error)
         } else {
           console.log('Data updated.')
-          db.end()
-          res.status(201).send({ message: 'Data updated!' })
+          res.status(200).send({ message: 'Data deleted!' })
         }
       })
     }

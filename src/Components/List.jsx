@@ -20,7 +20,7 @@ const List = props => {
   return <ListContainer>
     <ProgressBar />
     <TodoContainer>
-      {data && data.map((task, idx) => <TaskCard key={idx} task={task} deleteTask={deleteTask} putTask={putTask} />)}
+      {data && data.map(task => <TaskCard key={task.id} task={task} deleteTask={deleteTask} putTask={putTask} />)}
     </TodoContainer>
   </ListContainer>
 }
