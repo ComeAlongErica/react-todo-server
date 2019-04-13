@@ -49,10 +49,21 @@ const App = () => {
   //     .catch(error => console.log('error: ', error));
   // }
 
+  const deleteTask = id => {
+    let request = new Request(`http://localhost:3000/lists/${id}`, {
+      method: 'DELETE'
+    })
+
+    fetch(request)
+      .then(res => res.json())
+      .then(response => console.log('fetch response', response))
+      .catch(error => console.log('error: ', error))
+  }
+
   return (
     <Fragment>
       <Header />
-      <List data={todo} />
+      <List data={todo} deleteTask={deleteTask}/>
     </Fragment>
   )
 }

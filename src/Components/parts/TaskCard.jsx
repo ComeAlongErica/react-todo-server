@@ -2,16 +2,23 @@ import React from 'react'
 import styled from 'styled-components'
 
 const CardContainer = styled.div`
+display: flex;
+justify-content: space-around;
+align-items: center;
 width: 70%;
 max-width: 700px;
-margin: 0px auto;
+margin: 10px auto;
 background-color: white;
 border-radius: 5px;
-min-height: 50px;
+min-height: 150px;
+box-shadow: rgba(9, 30, 66, 0.25) 0px 1px 5px, rgba(9, 30, 66, 0.31) 0px 0px 1px 0px;
+:hover {
+  box-shadow: rgba(9, 30, 66, 0.25) 0px 8px 16px -4px, rgba(9, 30, 66, 0.31) 0px 0px 1px;
+}
 `
 
 const RadioButton = styled.input`
-margin: 20px;
+margin: 50px;
 position: relative;
   &:before {
   content: '';
@@ -33,14 +40,16 @@ position: relative;
     background-color: #ffae0d;
   }
 `
+const TaskLabel = styled.label`
+flex-grow: 1;
+`
 
 const TaskCard = props => {
-  const { task } = props
-  console.log(task)
+  const { task, deleteTask } = props
   return <CardContainer>
     <RadioButton type='checkbox' id='task' />
-    <label htmlFor='task'>{task.task}</label>
-    <button>Delete</button>
+    <TaskLabel htmlFor='task'>{task.task}</TaskLabel>
+    <button onClick={() => deleteTask(task.id)}>Delete</button>
   </CardContainer>
 }
 

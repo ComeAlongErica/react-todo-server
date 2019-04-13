@@ -11,16 +11,16 @@ width: 100%;
 `
 const TodoContainer = styled.div`
 padding: 20px;
-background-image: linear-gradient(#e2e4e5, #f8f8f8);
+background-image: linear-gradient(#e2e4e5, #f8f8f8, white);
 height: calc( 100vh - 250px);
 `
 
 const List = props => {
-  const { data } = props
+  const { data, deleteTask } = props
   return <ListContainer>
     <ProgressBar />
     <TodoContainer>
-      {data && data.map((task, idx) => <TaskCard key={idx} task={task} />)}
+      {data && data.map((task, idx) => <TaskCard key={idx} task={task} deleteTask={deleteTask} />)}
     </TodoContainer>
   </ListContainer>
 }

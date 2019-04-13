@@ -66,7 +66,7 @@ app.post('/lists', function (req, res) {
 })
 
 app.put('/lists/:id', function (req, res) {
-  let id = 3
+  let id = req.body.id
   let body = req.body
   let type = body.type
   let task = body.task
@@ -78,6 +78,26 @@ app.put('/lists/:id', function (req, res) {
       return res.status(400).send(error)
     } else {
       db.query('UPDATE todo set type=$1::varchar, task=$2::text, completed=$3::boolean WHERE id=$4::int', [...values], (error, table) => {
+        if (error) {
+          return res.status(400).send(error)
+        } else {
+          console.log('Data updated.')
+          db.end()
+          res.status(201).send({ message: 'Data updated!' })
+        }
+      })
+    }
+  })
+})
+
+app.delete('/lists/:id', function (req, res) {
+  let id = req.params.id
+  console.log('id', id)
+  pool.connect((error, db, done) => {
+    if (error) {
+      return res.status(400).send(error)
+    } else {
+      db.query('DELETE FROM todo WHERE id=$1::int', [id], (error, table) => {
         if (error) {
           return res.status(400).send(error)
         } else {
