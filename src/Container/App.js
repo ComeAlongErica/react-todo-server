@@ -7,6 +7,8 @@ import Modal from '../Components/parts/Modal'
 
 const App = () => {
   const [todo, setTodo] = useState()
+  const [displayModal, setDisplayModal] = useState(false)
+  const [modalContent, setModalContent] = useState()
 
   useEffect(() => {
     getTasks()
@@ -99,12 +101,22 @@ const App = () => {
       .catch(error => console.log('error: ', error))
   }
 
+  const openModal = (content) => {
+    setModalContent(content)
+    setDisplayModal(!displayModal)
+  }
+
+  const closeModal = (value) => {
+    if (value === 'close') {
+      setDisplayModal(!displayModal)
+    }
+  }
   console.log(todo)
   return (
     <Fragment>
-      <Header addTask={addTask} deleteAll={deleteAll} />
+      <Header openModal={openModal} />
       <List data={todo} deleteTask={deleteTask} putTask={putTask} />
-      <Modal />
+      {displayModal && <Modal modalContent={modalContent} closeModal={closeModal}/>}
     </Fragment>
   )
 }

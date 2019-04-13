@@ -36,9 +36,13 @@ const ActionButton = props => {
   const { closeModal, modalContent } = props
   return (
     <Fragment>
-      <ModalBG onClick={closeModal} />
+      <ModalBG onClick={() => closeModal('close')} />
       <DisplayModal>
-        <X className={'x-mark'} size={25} stroke={'#343535'} strokeWidth={3} />
+        <X
+          className={'x-mark'}
+          size={25} stroke={'#343535'}
+          strokeWidth={3}
+          onClick={() => closeModal('close')} />
         {modalContent}
       </DisplayModal>
     </Fragment>

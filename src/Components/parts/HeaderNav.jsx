@@ -9,16 +9,16 @@ const NavContainer = styled.div`
 `
 
 const HeaderNav = props => {
-  const { addTask, deleteAll } = props
+  const { openModal } = props
   const add = <Plus size={30} stroke={'#ffae0d'} strokeWidth={3} />
   const trash = <Trash2 size={30} stroke={'#ffae0d'} strokeWidth={3} />
   const renderNav = [
-    { icon: add, handleClick: addTask },
-    { icon: trash, handleClick: deleteAll }
+    { icon: add, handleClick: 'add' },
+    { icon: trash, handleClick: 'delete' }
   ]
   return (
     <NavContainer>
-      {renderNav.map((item, idx) => <ActionButton key={idx} icon={item.icon} handleClick={item.handleClick} />)}
+      {renderNav.map((item, idx) => <ActionButton key={idx} icon={item.icon} handleClick={() => openModal(item.handleClick)} />)}
     </NavContainer>
   )
 }
