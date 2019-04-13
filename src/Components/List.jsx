@@ -21,12 +21,16 @@ const List = props => {
   let uncompleted = data ? data.filter(item => item.completed).length : null
   let totalTasks = data ? data.length : null
 
-  console.log(uncompleted)
   return <ListContainer>
     <ProgressBar uncompleted={uncompleted} totalTasks={totalTasks} />
     <TodoContainer>
       {!data && <p>There is nothing to show.</p>}
-      {data && data.map(task => <TaskCard key={task.id} task={task} deleteTask={deleteTask} putTask={putTask} />)}
+      {data && data.map(task =>
+        <TaskCard
+          key={task.id}
+          task={task}
+          deleteTask={deleteTask}
+          putTask={putTask} />)}
     </TodoContainer>
   </ListContainer>
 }

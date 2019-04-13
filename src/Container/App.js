@@ -3,7 +3,6 @@ import React, { useState, useEffect, Fragment } from 'react'
 import Header from '../Components/Header'
 import List from '../Components/List'
 import Modal from '../Components/parts/Modal'
-// import { getTasks, addTask, putTask, deleteTask } from '../utilities'
 
 const App = () => {
   const [todo, setTodo] = useState()

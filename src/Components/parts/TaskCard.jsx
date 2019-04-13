@@ -63,6 +63,7 @@ background-image: linear-gradient(rgba(255, 255, 255, 0), rgba(255, 255, 255, 0)
 background-origin: border-box;
 background-clip: content-box, border-box;
 box-shadow: 2px 1000px 1px #fff inset;
+transition: .3s ease;
 :hover {
   color: white;
   box-shadow: none;
