@@ -7,10 +7,10 @@ import TaskCard from './parts/TaskCard'
 const ListContainer = styled.div`
 position: absolute;
 bottom: 0;
+width: 100%;
 `
 const TodoContainer = styled.div`
 padding: 20px;
-width: 100vw;
 background-image: linear-gradient(#e2e4e5, #f8f8f8);
 height: calc( 100vh - 250px);
 `

@@ -12,6 +12,7 @@ min-height: 50px;
 
 const TaskCard = props => {
   return <CardContainer>
+    <input type='radio' />
     This is a task
     <button>Complete</button>
     <button>Delete</button>
