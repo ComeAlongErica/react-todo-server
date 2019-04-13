@@ -3,6 +3,9 @@ import styled from 'styled-components'
 
 const ProgressContainer = styled.div`
 position: relative;
+font-size: 14px;
+color: #7a7a7a;
+font-weight: bold;
 `
 const Bar = styled.div`
 position: absolute;

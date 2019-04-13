@@ -29,9 +29,6 @@ app.use(function (req, res, next) {
 
 app.get('/lists', function (req, res) {
   pool.connect((error, db, done) => {
-    console.log(error)
-    console.log(db)
-    console.log(done)
     if (error) {
       return res.status(400).send(error)
     } else {
