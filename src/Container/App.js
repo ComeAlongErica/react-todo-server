@@ -2,6 +2,7 @@ import React, { useState, useEffect, Fragment } from 'react'
 
 import Header from '../Components/Header'
 import List from '../Components/List'
+import Modal from '../Components/parts/Modal'
 // import { getTasks, addTask, putTask, deleteTask } from '../utilities'
 
 const App = () => {
@@ -103,6 +104,7 @@ const App = () => {
     <Fragment>
       <Header addTask={addTask} deleteAll={deleteAll} />
       <List data={todo} deleteTask={deleteTask} putTask={putTask} />
+      <Modal />
     </Fragment>
   )
 }
