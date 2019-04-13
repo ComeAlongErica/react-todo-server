@@ -9,8 +9,8 @@ const NavContainer = styled.div`
 `
 
 const HeaderNav = props => {
-  const add = <Plus size={30} stroke={'#ffd74e'} strokeWidth={3} />
-  const trash = <Trash2 size={30} stroke={'#ffd74e'} strokeWidth={3} />
+  const add = <Plus size={30} stroke={'#ffae0d'} strokeWidth={3} />
+  const trash = <Trash2 size={30} stroke={'#ffae0d'} strokeWidth={3} />
   const renderNav = [add, trash]
   return (
     <NavContainer>
