@@ -45,9 +45,14 @@ flex-grow: 1;
 `
 
 const TaskCard = props => {
-  const { task, deleteTask } = props
+  const { task, deleteTask, putTask } = props
+  console.log(task.completed)
   return <CardContainer>
-    <RadioButton type='checkbox' id='task' />
+    <RadioButton
+      type='checkbox'
+      id='task'
+      onClick={e => putTask(e, task)}
+      defaultChecked={task.completed} />
     <TaskLabel htmlFor='task'>{task.task}</TaskLabel>
     <button onClick={() => deleteTask(task.id)}>Delete</button>
   </CardContainer>

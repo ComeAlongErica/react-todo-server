@@ -16,11 +16,11 @@ height: calc( 100vh - 250px);
 `
 
 const List = props => {
-  const { data, deleteTask } = props
+  const { data, deleteTask, putTask } = props
   return <ListContainer>
     <ProgressBar />
     <TodoContainer>
-      {data && data.map((task, idx) => <TaskCard key={idx} task={task} deleteTask={deleteTask} />)}
+      {data && data.map((task, idx) => <TaskCard key={idx} task={task} deleteTask={deleteTask} putTask={putTask} />)}
     </TodoContainer>
   </ListContainer>
 }

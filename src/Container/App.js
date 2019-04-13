@@ -31,24 +31,30 @@ const App = () => {
   //     .catch(error => console.log('error: ', error));
   // }
 
-  // const putTask = task => {
-  //   let data = {
-  //     type: 'NONONONON',
-  //     task: 'DO NOTHING',
-  //     completed: 'true'
-  //   }
+  const putTask = (e, task) => {
+    console.log(e.currentTarget.checked)
+    console.log(task)
+    let taskClone = { ...task }
+    let isSelected = e.currentTarget.checked
+    let id = task.id
 
-  //   let request = new Request('http://localhost:3000/lists/3', {
-  //     method: 'PUT',
-  //     headers: new Headers({ 'Content-Type': 'application/json' }),
-  //     body: JSON.stringify(data)
-  //   })
+    if (isSelected) {
+      taskClone.completed = true
+    } else {
+      taskClone.completed = false
+    }
 
-  //   fetch(request)
-  //     .then(res => res.json())
-  //     .then(response => console.log('fetch response', response))
-  //     .catch(error => console.log('error: ', error));
-  // }
+    let request = new Request(`http://localhost:3000/lists/${id}`, {
+      method: 'PUT',
+      headers: new Headers({ 'Content-Type': 'application/json' }),
+      body: JSON.stringify(taskClone)
+    })
+
+    window.fetch(request)
+      .then(res => res.json())
+      .then(response => console.log('fetch response', response))
+      .catch(error => console.log('error: ', error))
+  }
 
   const deleteTask = id => {
     let request = new Request(`http://localhost:3000/lists/${id}`, {
@@ -65,7 +71,7 @@ const App = () => {
   return (
     <Fragment>
       <Header />
-      <List data={todo} deleteTask={deleteTask} />
+      <List data={todo} deleteTask={deleteTask} putTask={putTask} />
     </Fragment>
   )
 }
