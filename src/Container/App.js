@@ -8,6 +8,7 @@ const App = () => {
   const [todo, setTodo] = useState()
   const [displayModal, setDisplayModal] = useState(false)
   const [modalContent, setModalContent] = useState()
+  const [showCompleted, setShowCompleted] = useState(true)
 
   useEffect(() => {
     getTasks()
@@ -110,11 +111,27 @@ const App = () => {
     }
   }
 
+  const toggleCompleted = () => {
+    setShowCompleted(!showCompleted)
+  }
+
   return (
     <Fragment>
-      <Header openModal={openModal} addTask={addTask} deleteAll={deleteAll} />
-      <List data={todo} deleteTask={deleteTask} putTask={putTask} />
-      {displayModal && <Modal modalContent={modalContent} closeModal={closeModal} />}
+      <Header
+        openModal={openModal}
+        addTask={addTask}
+        deleteAll={deleteAll}
+        toggleCompleted={toggleCompleted}
+        showCompleted={showCompleted} />
+      <List
+        data={todo}
+        deleteTask={deleteTask}
+        putTask={putTask}
+        showCompleted={showCompleted} />
+      {displayModal &&
+        <Modal
+          modalContent={modalContent}
+          closeModal={closeModal} />}
     </Fragment>
   )
 }

@@ -16,21 +16,35 @@ height: calc( 100vh - 250px);
 `
 
 const List = props => {
-  const { data, deleteTask, putTask } = props
+  const { data, deleteTask, putTask, showCompleted } = props
 
   let uncompleted = data ? data.filter(item => item.completed).length : null
   let totalTasks = data ? data.length : null
 
+  // let inCompleteArray = data && data.filter(item => item.completed)
   return <ListContainer>
     <ProgressBar uncompleted={uncompleted} totalTasks={totalTasks} />
     <TodoContainer>
       {!data && <p>There is nothing to show.</p>}
-      {data && data.map(task =>
-        <TaskCard
-          key={task.id}
-          task={task}
-          deleteTask={deleteTask}
-          putTask={putTask} />)}
+      {data && data.map(task => {
+        if (showCompleted) {
+          if (!task.completed) {
+            return <TaskCard
+              key={task.id}
+              task={task}
+              deleteTask={deleteTask}
+              putTask={putTask} />
+          }
+        } else {
+          return <TaskCard
+            key={task.id}
+            task={task}
+            deleteTask={deleteTask}
+            putTask={putTask} />
+        }
+      }
+
+      )}
     </TodoContainer>
   </ListContainer>
 }
