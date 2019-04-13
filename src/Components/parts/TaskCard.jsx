@@ -46,7 +46,6 @@ flex-grow: 1;
 
 const TaskCard = props => {
   const { task, deleteTask, putTask } = props
-  console.log(task.completed)
   return <CardContainer>
     <RadioButton
       type='checkbox'

@@ -9,9 +9,7 @@ const App = () => {
 
   useEffect(() => {
     getTasks()
-    // window.fetch('http://localhost:3000/lists/')
-    //   .then(res => res.json())
-    //   .then(result => setTodo(result))
+    console.log('isthishappen')
   }, [])
 
   const addTask = task => {
@@ -26,10 +24,13 @@ const App = () => {
       body: JSON.stringify(data)
     })
 
-    fetch(request)
+    window.fetch(request)
       .then(res => res.json())
-      .then(response => console.log('fetch response', response))
-      .catch(error => console.log('error: ', error));
+      .then(result => {
+        console.log('fetch response', result)
+        getTasks()
+      })
+      .catch(error => console.log('error: ', error))
   }
 
   const getTasks = () => {
@@ -86,7 +87,7 @@ const App = () => {
   console.log(todo)
   return (
     <Fragment>
-      <Header />
+      <Header addTask={addTask} />
       <List data={todo} deleteTask={deleteTask} putTask={putTask} />
     </Fragment>
   )

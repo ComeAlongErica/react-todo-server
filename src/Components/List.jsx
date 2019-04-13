@@ -17,8 +17,12 @@ height: calc( 100vh - 250px);
 
 const List = props => {
   const { data, deleteTask, putTask } = props
+  let uncompleted = data ? data.filter(item => item.completed).length : ''
+  let totalTasks = data ? data.length : ''
+
+  console.log(uncompleted)
   return <ListContainer>
-    <ProgressBar />
+    <ProgressBar uncompleted={uncompleted} totalTasks={totalTasks} />
     <TodoContainer>
       {data && data.map(task => <TaskCard key={task.id} task={task} deleteTask={deleteTask} putTask={putTask} />)}
     </TodoContainer>

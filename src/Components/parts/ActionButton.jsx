@@ -21,9 +21,9 @@ align-items: center;
 `
 
 const ActionButton = props => {
-  const { icon } = props
+  const { icon, handleClick } = props
   return (
-    <ActionContainer>
+    <ActionContainer onClick={handleClick} >
       {icon}
     </ActionContainer>)
 }

@@ -33,10 +33,11 @@ align-self: center;
 `
 
 const ProgressBar = props => {
+  const { uncompleted, totalTasks } = props
   return <ProgressContainer>
     <ListsHeader>
       <p>Open Tasks</p>
-      <p>1/4</p>
+      <p>{uncompleted}/{totalTasks}</p>
     </ListsHeader>
     <Bar width={'75%'}>
       <EndPoint />

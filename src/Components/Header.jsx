@@ -12,8 +12,9 @@ top: 0;
 `
 
 const Header = props => {
+  const { addTask } = props
   return <HeaderContainer>
-    <HeaderNav />
+    <HeaderNav addTask={addTask} />
   </HeaderContainer>
 }
 

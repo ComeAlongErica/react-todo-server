@@ -9,12 +9,16 @@ const NavContainer = styled.div`
 `
 
 const HeaderNav = props => {
+  const { addTask } = props
   const add = <Plus size={30} stroke={'#ffae0d'} strokeWidth={3} />
   const trash = <Trash2 size={30} stroke={'#ffae0d'} strokeWidth={3} />
-  const renderNav = [add, trash]
+  const renderNav = [
+    { icon: add, handleClick: addTask },
+    { icon: trash, handleClick: '' }
+  ]
   return (
     <NavContainer>
-      {renderNav.map((icon, idx) => <ActionButton key={idx} icon={icon} />)}
+      {renderNav.map((item, idx) => <ActionButton key={idx} icon={item.icon} handleClick={item.handleClick} />)}
     </NavContainer>
   )
 }
