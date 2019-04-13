@@ -4,13 +4,13 @@ import Header from '../Components/Header'
 import List from '../Components/List'
 
 const App = () => {
-  // const [todo, setTodo] = useState()
+  const [todo, setTodo] = useState()
 
-  // useEffect(() => {
-  //   fetch('http://localhost:3000/lists/')
-  //   .then(res => res.json())
-  //   .then(response => setTodo(response))
-  // }, [])
+  useEffect(() => {
+    window.fetch('http://localhost:3000/lists/')
+      .then(res => res.json())
+      .then(response => setTodo(response))
+  }, [])
 
   // const addTask = task => {
   //   let data = {
@@ -52,7 +52,7 @@ const App = () => {
   return (
     <Fragment>
       <Header />
-      <List />
+      <List data={todo} />
     </Fragment>
   )
 }

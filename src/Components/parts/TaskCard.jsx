@@ -35,9 +35,11 @@ position: relative;
 `
 
 const TaskCard = props => {
+  const { task } = props
+  console.log(task)
   return <CardContainer>
     <RadioButton type='checkbox' id='task' />
-    <label for='task'>This is a task</label>
+    <label htmlFor='task'>{task.task}</label>
     <button>Delete</button>
   </CardContainer>
 }

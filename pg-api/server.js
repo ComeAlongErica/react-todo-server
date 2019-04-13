@@ -15,20 +15,6 @@ const pool = pg.Pool({
   max: 10
 })
 
-// pool.connect((error, db, done) => {
-//   if (error) {
-//     return console.log(error)
-//   } else {
-//     db.query('SELECT * FROM todo', (error, table) => {
-//       if (error) {
-//         return console.log(error)
-//       } else {
-//         console.log(table.rows)
-//       }
-//     })
-//   }
-// })
-
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({ extended: true }))
 

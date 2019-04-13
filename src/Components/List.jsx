@@ -16,10 +16,11 @@ height: calc( 100vh - 250px);
 `
 
 const List = props => {
+  const { data } = props
   return <ListContainer>
     <ProgressBar />
     <TodoContainer>
-      <TaskCard />
+      {data && data.map((task, idx) => <TaskCard key={idx} task={task} />)}
     </TodoContainer>
   </ListContainer>
 }
