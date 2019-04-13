@@ -3,6 +3,7 @@ const bodyParser = require('body-parser')
 const morgan = require('morgan')
 const pg = require('pg')
 const app = express()
+const cors = require('cors')
 const PORT = 3000
 
 const pool = pg.Pool({
@@ -15,6 +16,7 @@ const pool = pg.Pool({
   max: 10
 })
 
+app.use(cors())
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({ extended: true }))
 
@@ -27,6 +29,9 @@ app.use(function (req, res, next) {
 
 app.get('/lists', function (req, res) {
   pool.connect((error, db, done) => {
+    console.log(error)
+    console.log(db)
+    console.log(done)
     if (error) {
       return res.status(400).send(error)
     } else {

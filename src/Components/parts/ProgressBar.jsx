@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { Fragment } from 'react'
 import styled from 'styled-components'
 
 const ProgressContainer = styled.div`
@@ -12,6 +12,7 @@ height: 10px;
 border-radius: 0 10px 10px 0;
 width: ${props => props.width || '100%'};
 display: flex;
+transition: .5s ease;
 `
 const ListsHeader = styled.div`
 display: flex;
@@ -34,14 +35,21 @@ align-self: center;
 
 const ProgressBar = props => {
   const { uncompleted, totalTasks } = props
+  let isDataNull = uncompleted === null || totalTasks === null
+  let percentage = !isDataNull ? `${(uncompleted / totalTasks) * 100}%` : null
+  console.log(percentage)
+
   return <ProgressContainer>
-    <ListsHeader>
-      <p>Open Tasks</p>
-      <p>{uncompleted}/{totalTasks}</p>
-    </ListsHeader>
-    <Bar width={'75%'}>
-      <EndPoint />
-    </Bar>
+    {!isDataNull &&
+      <Fragment>
+        <ListsHeader>
+          <p>Open Tasks</p>
+          <p>{uncompleted}/{totalTasks}</p>
+        </ListsHeader>
+        <Bar width={percentage}>
+          <EndPoint />
+        </Bar>
+      </Fragment>}
   </ProgressContainer>
 }
 

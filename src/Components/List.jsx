@@ -17,8 +17,9 @@ height: calc( 100vh - 250px);
 
 const List = props => {
   const { data, deleteTask, putTask } = props
-  let uncompleted = data ? data.filter(item => item.completed).length : ''
-  let totalTasks = data ? data.length : ''
+
+  let uncompleted = data ? data.filter(item => item.completed).length : null
+  let totalTasks = data ? data.length : null
 
   console.log(uncompleted)
   return <ListContainer>
