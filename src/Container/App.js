@@ -94,6 +94,7 @@ const App = () => {
       .then((response) => {
         console.log('all data delete response', response)
         getTasks()
+        setDisplayModal(false)
       })
       .catch(error => console.log('error: ', error))
   }
@@ -108,10 +109,10 @@ const App = () => {
       setDisplayModal(!displayModal)
     }
   }
-  console.log(todo)
+
   return (
     <Fragment>
-      <Header openModal={openModal} addTask={addTask} deleteAll={deleteAll} closeModal={closeModal} />
+      <Header openModal={openModal} addTask={addTask} deleteAll={deleteAll} />
       <List data={todo} deleteTask={deleteTask} putTask={putTask} />
       {displayModal && <Modal modalContent={modalContent} closeModal={closeModal} />}
     </Fragment>

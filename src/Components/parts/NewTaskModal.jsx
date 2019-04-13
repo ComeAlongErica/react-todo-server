@@ -48,6 +48,9 @@ box-shadow: none;
   color: #343535;
   cursor: pointer;
 }
+:focus {
+  outline: none;
+}
 `
 
 const NewTaskModal = props => {

@@ -10,6 +10,7 @@ width: 100vw;
 position: fixed;
 top: 0; left: 0;
 background-color: #34353571;
+
 `
 const DisplayModal = styled.div`
 z-index: 15;
@@ -28,6 +29,9 @@ justify-content: center;
   :hover {
     cursor: pointer;
   }
+}
+@media only screen and (max-width: 600px){
+  width: 100%;
 }
 `
 

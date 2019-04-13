@@ -33,10 +33,13 @@ box-shadow: none;
   color: #343535;
   cursor: pointer;
 }
+:focus {
+  outline: none;
+}
 `
 
 const NewTaskModal = props => {
-  const { deleteAll, closeModal } = props
+  const { deleteAll } = props
   const [confirmDelete, setConfirmDelete] = useState(false)
 
   let buttonText = confirmDelete ? 'Are you sure?' : 'delete all'
@@ -46,7 +49,6 @@ const NewTaskModal = props => {
     if (confirmDelete) {
       deleteAll()
       setConfirmDelete(!confirmDelete)
-      closeModal('close')
     } else {
       setConfirmDelete(!confirmDelete)
     }

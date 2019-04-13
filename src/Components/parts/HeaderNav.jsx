@@ -11,7 +11,7 @@ const NavContainer = styled.div`
 `
 
 const HeaderNav = props => {
-  const { openModal, addTask, deleteAll, closeModal } = props
+  const { openModal, addTask, deleteAll } = props
   const renderNav = [
     {
       icon: <Plus size={30} stroke={'#ffae0d'} strokeWidth={3} />,
@@ -19,7 +19,7 @@ const HeaderNav = props => {
     },
     {
       icon: <Trash2 size={30} stroke={'#ffae0d'} strokeWidth={3} />,
-      component: <DeleteAllModal deleteAll={deleteAll} closeModal={closeModal} />
+      component: <DeleteAllModal deleteAll={deleteAll} />
     }
   ]
   return (

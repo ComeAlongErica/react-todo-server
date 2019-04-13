@@ -40,7 +40,6 @@ const ProgressBar = props => {
   const { uncompleted, totalTasks } = props
   let isDataNull = uncompleted === null || totalTasks === null
   let percentage = !isDataNull ? `${(uncompleted / totalTasks) * 100}%` : null
-  console.log(percentage)
 
   return <ProgressContainer>
     {!isDataNull &&

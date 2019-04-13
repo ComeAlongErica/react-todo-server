@@ -16,6 +16,10 @@ box-shadow: rgba(9, 30, 66, 0.25) 0px 1px 5px, rgba(9, 30, 66, 0.31) 0px 0px 1px
 :hover {
   box-shadow: rgba(9, 30, 66, 0.25) 0px 8px 16px -4px, rgba(9, 30, 66, 0.31) 0px 0px 1px;
 }
+@media only screen and (max-width: 600px){
+ width: 100%;
+ border-radius: none;
+}
 `
 
 const RadioButton = styled.input`
@@ -43,12 +47,18 @@ position: relative;
   :hover {
     cursor: pointer;
   }
+@media only screen and (max-width: 600px){
+  margin: 22px;
+}
 `
 const TaskLabel = styled.label`
 flex-grow: 1;
 :hover {
     cursor: pointer;
   }
+@media only screen and (max-width: 600px){
+  margin: 10px;
+}
 `
 const DeleteButton = styled.div`
 text-transform: lowercase;
@@ -69,6 +79,9 @@ transition: .3s ease;
   box-shadow: none;
   cursor: pointer;
 }
+@media only screen and (max-width: 600px){
+  margin: 10px;
+}
 `
 
 const TaskCard = props => {
@@ -76,10 +89,10 @@ const TaskCard = props => {
   return <CardContainer>
     <RadioButton
       type='checkbox'
-      id='task'
+      id={task.id}
       onClick={e => putTask(e, task)}
       defaultChecked={task.completed} />
-    <TaskLabel htmlFor='task'>{task.task}{task.id}</TaskLabel>
+    <TaskLabel htmlFor={task.id}>{task.task}{task.id}</TaskLabel>
     <DeleteButton onClick={() => deleteTask(task.id)}>remove</DeleteButton>
   </CardContainer>
 }
