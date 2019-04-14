@@ -21,29 +21,16 @@ const List = props => {
   let uncompleted = data ? data.filter(item => item.completed).length : null
   let totalTasks = data ? data.length : null
 
-  // let inCompleteArray = data && data.filter(item => item.completed)
   return <ListContainer>
     <ProgressBar uncompleted={uncompleted} totalTasks={totalTasks} />
     <TodoContainer>
       {!data && <p>There is nothing to show. If you're seeing this, check the this projects ReadMe to set up the project correctly.</p>}
-      {data && data.map(task => {
-        if (showCompleted) {
-          if (!task.completed) {
-            return <TaskCard
-              key={task.id}
-              task={task}
-              deleteTask={deleteTask}
-              putTask={putTask} />
-          }
-        } else {
-          return <TaskCard
-            key={task.id}
-            task={task}
-            deleteTask={deleteTask}
-            putTask={putTask} />
-        }
-      }
-
+      {data && data.map(task => <TaskCard
+        showCompleted={showCompleted}
+        key={task.id}
+        task={task}
+        deleteTask={deleteTask}
+        putTask={putTask} />
       )}
     </TodoContainer>
   </ListContainer>

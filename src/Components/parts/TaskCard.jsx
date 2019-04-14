@@ -2,8 +2,8 @@ import React from 'react'
 import styled from 'styled-components'
 
 const CardContainer = styled.div`
+display: ${props => props.showCompleted && props.completed ? 'none' : 'flex'}
 transition: .3s ease;
-display: flex;
 justify-content: space-around;
 align-items: center;
 width: 70%;
@@ -88,20 +88,22 @@ transition: .3s ease;
 `
 
 const TaskCard = props => {
-  const { task, deleteTask, putTask } = props
-  return <CardContainer>
-    <RadioButton
-      type='checkbox'
-      id={task.id}
-      onClick={e => putTask(e, task)}
-      defaultChecked={task.completed} />
-    <TaskLabel
-      htmlFor={task.id}
-      completed={task.completed}>
-      {task.task}
-    </TaskLabel>
-    <DeleteButton onClick={() => deleteTask(task.id)}>remove</DeleteButton>
-  </CardContainer>
+  const { task, deleteTask, putTask, showCompleted } = props
+  return (
+    <CardContainer showCompleted={showCompleted} completed={task.completed}>
+      <RadioButton
+        type='checkbox'
+        id={task.id}
+        onClick={e => putTask(e, task)}
+        defaultChecked={task.completed} />
+      <TaskLabel
+        htmlFor={task.id}
+        completed={task.completed}>
+        {task.task}
+      </TaskLabel>
+      <DeleteButton onClick={() => deleteTask(task.id)}>remove</DeleteButton>
+    </CardContainer>
+  )
 }
 
 export default TaskCard
