@@ -10,7 +10,6 @@ width: 100vw;
 position: fixed;
 top: 0; left: 0;
 background-color: #34353571;
-
 `
 const DisplayModal = styled.div`
 z-index: 15;

@@ -25,7 +25,8 @@ const ActionButton = props => {
   return (
     <ActionContainer onClick={handleClick} >
       {icon}
-    </ActionContainer>)
+    </ActionContainer>
+  )
 }
 
 export default ActionButton

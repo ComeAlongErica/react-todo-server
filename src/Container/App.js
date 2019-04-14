@@ -19,13 +19,14 @@ const App = () => {
       task: task,
       completed: 'false'
     }
-    let request = new Request('http://localhost:5000/lists/', {
-      method: 'POST',
-      headers: new Headers({ 'Content-Type': 'application/json' }),
-      body: JSON.stringify(data)
-    })
+    let url = `http://localhost:5000/lists/`
 
-    window.fetch(request)
+    window.fetch(url,
+      {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(data)
+      })
       .then(res => res.json())
       .then(result => {
         // console.log('fetch response', result)
@@ -44,23 +45,18 @@ const App = () => {
   }
 
   const putTask = (e, task) => {
+    let id = task.id
     let taskClone = { ...task }
     let isSelected = e.currentTarget.checked
-    let id = task.id
+    taskClone.completed = isSelected
 
-    if (isSelected) {
-      taskClone.completed = true
-    } else {
-      taskClone.completed = false
-    }
-
-    let request = new Request(`http://localhost:5000/lists/${id}`, {
-      method: 'PUT',
-      headers: new Headers({ 'Content-Type': 'application/json' }),
-      body: JSON.stringify(taskClone)
-    })
-
-    window.fetch(request)
+    let url = `http://localhost:5000/lists/${id}`
+    window.fetch(url,
+      {
+        method: 'PUT',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(taskClone)
+      })
       .then(res => res.json())
       .then((response) => {
         // console.log('edit response', response)
@@ -70,11 +66,12 @@ const App = () => {
   }
 
   const deleteTask = id => {
-    let request = new Request(`http://localhost:5000/lists/${id}`, {
-      method: 'DELETE'
-    })
+    let url = `http://localhost:5000/lists/${id}`
 
-    window.fetch(request)
+    window.fetch(url,
+      {
+        method: 'DELETE'
+      })
       .then(res => res.json())
       .then((response) => {
         // console.log('delete response', response)
@@ -84,11 +81,12 @@ const App = () => {
   }
 
   const deleteAll = () => {
-    let request = new Request('http://localhost:5000/lists', {
-      method: 'DELETE'
-    })
+    let url = `http://localhost:5000/lists`
 
-    window.fetch(request)
+    window.fetch(url,
+      {
+        method: 'DELETE'
+      })
       .then(res => res.json())
       .then((response) => {
         // console.log('all data delete response', response)

@@ -41,18 +41,20 @@ const ProgressBar = props => {
   let isDataNull = uncompleted === null || totalTasks === null
   let percentage = !isDataNull ? `${(uncompleted / totalTasks) * 100}%` : null
 
-  return <ProgressContainer>
-    {!isDataNull &&
-      <Fragment>
-        <ListsHeader>
-          <p>Open Tasks</p>
-          <p>{uncompleted}/{totalTasks}</p>
-        </ListsHeader>
-        <Bar width={percentage}>
-          <EndPoint />
-        </Bar>
-      </Fragment>}
-  </ProgressContainer>
+  return (
+    <ProgressContainer>
+      {!isDataNull &&
+        <Fragment>
+          <ListsHeader>
+            <p>Open Tasks</p>
+            <p>{uncompleted}/{totalTasks}</p>
+          </ListsHeader>
+          <Bar width={percentage}>
+            <EndPoint />
+          </Bar>
+        </Fragment>}
+    </ProgressContainer>
+  )
 }
 
 export default ProgressBar

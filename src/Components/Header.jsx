@@ -13,14 +13,16 @@ top: 0;
 
 const Header = props => {
   const { openModal, addTask, deleteAll, toggleCompleted, showCompleted } = props
-  return <HeaderContainer>
-    <HeaderNav
-      showCompleted={showCompleted}
-      toggleCompleted={toggleCompleted}
-      openModal={openModal}
-      addTask={addTask}
-      deleteAll={deleteAll} />
-  </HeaderContainer>
+  return (
+    <HeaderContainer>
+      <HeaderNav
+        showCompleted={showCompleted}
+        toggleCompleted={toggleCompleted}
+        openModal={openModal}
+        addTask={addTask}
+        deleteAll={deleteAll} />
+    </HeaderContainer>
+  )
 }
 
 export default Header
