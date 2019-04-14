@@ -28,7 +28,7 @@ const App = () => {
     window.fetch(request)
       .then(res => res.json())
       .then(result => {
-        console.log('fetch response', result)
+        // console.log('fetch response', result)
         getTasks()
       })
       .catch(error => console.log('error: ', error))
@@ -38,14 +38,12 @@ const App = () => {
     window.fetch('http://localhost:5000/lists/')
       .then(res => res.json())
       .then(result => {
-        console.log('get response', result)
+        // console.log('get response', result)
         setTodo(result)
       })
   }
 
   const putTask = (e, task) => {
-    console.log(e.currentTarget.checked)
-    console.log(task)
     let taskClone = { ...task }
     let isSelected = e.currentTarget.checked
     let id = task.id
@@ -65,7 +63,7 @@ const App = () => {
     window.fetch(request)
       .then(res => res.json())
       .then((response) => {
-        console.log('edit response', response)
+        // console.log('edit response', response)
         getTasks()
       })
       .catch(error => console.log('error: ', error))
@@ -79,7 +77,7 @@ const App = () => {
     window.fetch(request)
       .then(res => res.json())
       .then((response) => {
-        console.log('delete response', response)
+        // console.log('delete response', response)
         getTasks()
       })
       .catch(error => console.log('error: ', error))
@@ -93,7 +91,7 @@ const App = () => {
     window.fetch(request)
       .then(res => res.json())
       .then((response) => {
-        console.log('all data delete response', response)
+        // console.log('all data delete response', response)
         getTasks()
         setDisplayModal(false)
       })
