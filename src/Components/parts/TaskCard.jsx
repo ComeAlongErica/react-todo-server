@@ -2,7 +2,7 @@ import React from 'react'
 import styled from 'styled-components'
 
 const CardContainer = styled.div`
-color: #343535;
+transition: .3s ease;
 display: flex;
 justify-content: space-around;
 align-items: center;
@@ -53,6 +53,8 @@ position: relative;
 `
 const TaskLabel = styled.label`
 flex-grow: 1;
+color: ${props => props.completed ? '#7a7a7a' : '#343535'};
+text-decoration: ${props => props.completed ? 'line-through' : ''};
 :hover {
     cursor: pointer;
   }
@@ -61,6 +63,7 @@ flex-grow: 1;
 }
 `
 const DeleteButton = styled.div`
+color: #343535;
 text-transform: lowercase;
 letter-spacing: 1px;
 font-size: 13px;
@@ -92,7 +95,11 @@ const TaskCard = props => {
       id={task.id}
       onClick={e => putTask(e, task)}
       defaultChecked={task.completed} />
-    <TaskLabel htmlFor={task.id}>{task.task}</TaskLabel>
+    <TaskLabel
+      htmlFor={task.id}
+      completed={task.completed}>
+      {task.task}
+    </TaskLabel>
     <DeleteButton onClick={() => deleteTask(task.id)}>remove</DeleteButton>
   </CardContainer>
 }

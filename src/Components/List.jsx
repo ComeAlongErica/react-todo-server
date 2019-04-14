@@ -25,7 +25,7 @@ const List = props => {
   return <ListContainer>
     <ProgressBar uncompleted={uncompleted} totalTasks={totalTasks} />
     <TodoContainer>
-      {!data && <p>There is nothing to show.</p>}
+      {!data && <p>There is nothing to show. If you're seeing this, check the this projects ReadMe to set up the project correctly.</p>}
       {data && data.map(task => {
         if (showCompleted) {
           if (!task.completed) {
