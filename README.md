@@ -9,10 +9,10 @@ In the project directory, you can run:
 
 Create table in pgAdmin:
 
-CREATE TABLE todo(
-    id SERIAL UNIQUE PRIMARY KEY,
-    task TEXT,
-    completed BOOLEAN
-    );
+CREATE TABLE todo( 
+    id SERIAL UNIQUE PRIMARY KEY, 
+    task TEXT, 
+    completed BOOLEAN, 
+    type TEXT );
 
 Adjust pool in server.js if necessary.
