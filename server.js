@@ -6,14 +6,22 @@ const app = express()
 const cors = require('cors')
 const PORT = 5000
 
+const url = require('url')
+try {
+  require('dotenv').config()
+} catch (e) {
+  console.log(e)
+}
+
+const params = url.parse(process.env.DATABASE_URL)
+const auth = params.auth.split(':')
 const pool = pg.Pool({
-  user: 'postgres',
-  password: 'password',
-  host: 'localhost',
-  port: 5432,
-  database: 'postgres',
-  ssl: false,
-  max: 100
+  user: auth[0],
+  password: auth[1],
+  host: params.hostname,
+  port: params.port,
+  database: params.pathname.split('/')[1],
+  ssl: params.hostname !== 'localhost'
 })
 
 app.use(cors())
@@ -53,15 +61,19 @@ app.post('/lists', function (req, res) {
     if (error) {
       return res.status(400).send(error)
     } else {
-      db.query('INSERT INTO todo (type, task, completed) values($1::varchar, $2::text, $3::boolean)', [...values], (error, table) => {
-        if (error) {
-          return res.status(400).send(error)
-        } else {
-          console.log('Data posted.')
-          db.end()
-          res.status(201).send({ message: 'Data insterted!' })
+      db.query(
+        'INSERT INTO todo (type, task, completed) values($1::varchar, $2::text, $3::boolean)',
+        [...values],
+        (error, table) => {
+          if (error) {
+            return res.status(400).send(error)
+          } else {
+            console.log('Data posted.')
+            db.end()
+            res.status(201).send({ message: 'Data insterted!' })
+          }
         }
-      })
+      )
     }
   })
 })
@@ -78,15 +90,19 @@ app.put('/lists/:id', function (req, res) {
     if (error) {
       return res.status(400).send(error)
     } else {
-      db.query('UPDATE todo set type=$1::varchar, task=$2::text, completed=$3::boolean WHERE id=$4::int', [...values], (error, table) => {
-        if (error) {
-          return res.status(400).send(error)
-        } else {
-          console.log('Data updated.')
-          db.end()
-          res.status(201).send({ message: 'Data updated!' })
+      db.query(
+        'UPDATE todo set type=$1::varchar, task=$2::text, completed=$3::boolean WHERE id=$4::int',
+        [...values],
+        (error, table) => {
+          if (error) {
+            return res.status(400).send(error)
+          } else {
+            console.log('Data updated.')
+            db.end()
+            res.status(201).send({ message: 'Data updated!' })
+          }
         }
-      })
+      )
     }
   })
 })
