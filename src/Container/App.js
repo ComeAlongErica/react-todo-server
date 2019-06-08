@@ -10,9 +10,11 @@ const App = () => {
   const [displayModal, setDisplayModal] = useState(false)
   const [modalContent, setModalContent] = useState()
   const [showCompleted, setShowCompleted] = useState(true)
+  // const connecToServer = () => this.connecToServer.bind(this)
 
   useEffect(() => {
     getTasks().then(tasks => setTodo(tasks))
+    // connecToServer()
   }, [])
 
   const getAndUpdate = () => {

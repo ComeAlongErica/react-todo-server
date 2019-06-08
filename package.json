@@ -17,16 +17,12 @@
     "pg": "^7.9.0"
   },
   "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test",
-    "eject": "react-scripts eject",
     "client-install": "npm install --prefix client",
-    "start-node": "node server.js",
+    "start": "node server.js",
     "server": "nodemon server.js",
     "client": "npm start --prefix client",
     "dev": "concurrently \"npm run server\" \"npm run client\"",
-    "heroku-postbuild": "NPM_CONFIG_PRODUCTION=false npm install --prefix client && npm run build --prefix client"
+    "heroku-postbuild": "NPM_CONFIG_PRODUCTION=false npm install --prefix client        && npm run build --prefix client"
   },
   "eslintConfig": {
     "extends": "react-app"
@@ -43,5 +39,12 @@
   "engines": {
     "node": "10.14.2",
     "npm": "6.4.1"
-  }
+  },
+  "proxy": "http://localhost:5000",
+  "browserslist": [
+    ">0.2%",
+    "not dead",
+    "not ie <= 11",
+    "not op_mini all"
+  ]
 }
