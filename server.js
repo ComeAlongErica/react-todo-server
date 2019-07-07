@@ -21,7 +21,8 @@ const pool = pg.Pool({
   host: params.hostname,
   port: params.port,
   database: params.pathname.split('/')[1],
-  ssl: params.hostname !== 'localhost'
+  ssl: params.hostname !== 'localhost',
+  max: 100
 })
 
 app.use(cors())

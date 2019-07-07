@@ -9,7 +9,7 @@ Features:
 - Show/Hide completed tasks
 - Progress bar of completed tasks
 - Higher-order components (modal)
-- Single database table
+- Single database table on heroku
 
 ## Available Scripts
 
@@ -18,12 +18,8 @@ In the project directory, you can run:
 ### `npm run start-node`
 ### `npm start`
 
-Create table in pgAdmin:
+Project will run on http://localhost:3000/
 
-CREATE TABLE todo( 
-    id SERIAL UNIQUE PRIMARY KEY, 
-    task TEXT, 
-    completed BOOLEAN, 
-    type TEXT );
+![Todo List](screenshots/list.png)
 
-Adjust pool in server.js if necessary.
+![Add Task](screenshots/modal.png)
